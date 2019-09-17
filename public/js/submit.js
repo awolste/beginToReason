@@ -29,6 +29,7 @@ function submit() {
     var data = {};
     data.module = currentLesson.module;
     data.name = currentLesson.name;
+    data.author = author;
     //data.author = "user.googleId;"   //make userid
     data.milliseconds = getTime();
     data.code = createEditor.getValue();
@@ -42,13 +43,13 @@ function submit() {
         if (results.status == "trivial") {
             unlock("Sorry, not the intended answer. Try again!");
         } else if (results.status == "unparsable") {
-            unlock("Syntax error. Check each of the following: <br>1. Did you fill out all confirm assertions? <br>2. Is there a semicolon at the end of each assertion? <br>3. Did you use the correct variable names?");
+            unlock("<b>Syntax error.</b> <br>Check each of the following: <br>1. Did you fill out all confirm assertions? <br>2. Is there a semicolon at the end of each assertion? <br>3. Did you use the correct variable names?");
         } else if (results.status == "failure") {
             if ("problem" in results) {
                 unlock("Sorry, not correct. Try this other lesson!");
                 parseLesson(results.problem);
             } else {
-                unlock("Wrong answer. Check each of the following: <br>1. Did you read the reference material? <br>2. Do you understand the distinction between input and output values?");
+                unlock("<b>Wrong answer.</b> <br>Check each of the following: <br>1. Did you read the reference material? <br>2. Do you understand the distinction between input and output values?");
             }
         } else if (results.status == "success") {
             unlock("Correct! On to the next lesson.");

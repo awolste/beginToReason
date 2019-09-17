@@ -11,7 +11,7 @@ router.post('/verify', (req, res) => {
     if (!(
         'module' in req.body &&
         'name' in req.body &&
-        //'author' in req.body &&
+        'author' in req.body &&
         'milliseconds' in req.body &&
         'code' in req.body
     )) {
@@ -222,7 +222,7 @@ function log(req, status) {
     new Data({
       module: req.body.module,
       name: req.body.name,
-      author: "unknown author",
+      author: req.body.author,
       milliseconds: req.body.milliseconds,
       code: req.body.code,
       timestamp: req.body.timestamp,
