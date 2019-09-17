@@ -105,6 +105,12 @@ router.post('/newUser/year', (req, res, next)=> {
 
 
 
+router.get('/userid', (req, res, next)=> {
+  return myUser._id;
+});
+
+
+
 passport.serializeUser((user, done) => {
     done(null, user.id);
 });

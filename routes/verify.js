@@ -1,6 +1,10 @@
 var express = require('express')
 var router = express.Router()
 var WebSocket = require('ws')
+const User = require('../models/user-model');
+const Lesson = require('../models/lesson-model');
+const Data = require('../models/data-model');
+
 
 router.post('/verify', (req, res) => {
     // Check for all necessary fields
@@ -95,6 +99,12 @@ router.post('/verify', (req, res) => {
         }
     })
 })
+ /*var reason = "";
+
+router.post('/verify/explain', (req, res, next) => {
+  console.log("explaination: " + req.body.reason);
+  reason = req.body.reason;
+})*/
 
 
 
@@ -208,8 +218,17 @@ function log(req, status) {
     var time = new Date()
     req.body.timestamp = time.toISOString() // Note that this is an ISO 8601 timestamp, which does not account for time zone
     req.body.status = status
-    var data = req.db.collection('data')
-    data.insertOne(req.body)
+    //Data.insertOne(req.body)
+    new Data({
+      module: req.body.module,
+      name: req.body.name,
+      author: "unknown author",
+      milliseconds: req.body.milliseconds,
+      code: req.body.code,
+      timestamp: req.body.timestamp,
+      status: req.body.status,
+      explaination: req.body.explaination,
+    }).save()
 }
 
 /*

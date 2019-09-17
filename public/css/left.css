@@ -34,14 +34,6 @@
     overflow: auto;
 }
 
-#left .content .reason {
-    width: 100%;
-    font-family: "Courier New";
-    box-sizing: border-box;
-    border: 6px solid #383a3d;
-    overflow: auto;
-    font-size: 14pt;
-}
 
 #left .prev {
     float: left;
