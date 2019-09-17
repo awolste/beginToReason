@@ -1,7 +1,7 @@
 html, body {
     width: 100%;
     height: 100%;
-    
+
     margin: 0;
     padding: 0;
     border: 0;
@@ -28,14 +28,14 @@ div {
 .header, .footer {
     width: 100%;
     height: 70px;
-    
+
     box-sizing: border-box;
 }
 
 .headette, .footette, .footetteDisabled {
     width: 100%;
     height: 35px;
-    
+
     box-sizing: border-box;
 }
 

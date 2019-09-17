@@ -1,7 +1,16 @@
 var express = require('express')
 var router = express.Router()
+const Lesson = require('../models/lesson-model')
 
-router.get('/1dry', (req, res) => {
+const authCheck = (req, res, next) => {
+    if(!req.user){
+        res.redirect('/auth/login');
+    } else {
+        next();
+    }
+};
+
+router.get('/1dry', authCheck, (req, res) => {
     var context = {module: '1dry'}
     res.render('index.ejs', context)
 })
@@ -10,7 +19,7 @@ router.get('/1dry/initial', (req, res) => {
     initial(req, res, 'section1', 'tutorial0')
 })
 
-router.get('/2bat', (req, res) => {
+router.get('/2bat', authCheck, (req, res) => {
     var context = {module: '2bat'}
     res.render('index.ejs', context)
 })
@@ -19,7 +28,7 @@ router.get('/2bat/initial', (req, res) => {
     initial(req, res, 'section2', 'lesson1')
 })
 
-router.get('/3pop', (req, res) => {
+router.get('/3pop', authCheck, (req, res) => {
     var context = {module: '3pop'}
     res.render('index.ejs', context)
 })
@@ -29,25 +38,37 @@ router.get('/3pop/initial', (req, res) => {
 })
 
 // Unused sections
-router.get('/4red', (req, res) => {
+router.get('/4red', authCheck, (req, res) => {
     res.send('Section 4')
 })
+
 
 
 /*
     One day, the initial problem should be hosted on the database.
 */
 function initial(req, res, module, problem) {
-    var problems = req.db.collection('problems')
-    problems.find({
+    //var problems = req.db.collection('problems')
+    Lesson.find({
         module: module,
         name: problem
+    }).then(function(result){
+        res.json(result[0]._doc)
+    })
+}
+/*function initial(req, res, module, problem) {
+    //var problems = req.db.collection('lessons')
+    Lesson.find({
+        module: 'section1',
+        name: 'tutorial0'
     })
     .project(problemProjection)
     .next((err, result) => {
         res.json(result)
     })
-}
+}*/
+
+
 
 const problemProjection = {
     _id: 0,

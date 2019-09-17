@@ -3,10 +3,14 @@
 // route.
 
 // Load libraries
-var express = require('express')
-var app = express()
-var bodyParser = require('body-parser')
-var mongo = require('express-mongo-db')
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+var mongo = require('express-mongo-db');
+var cookieSession = require('cookie-session');
+var passport = require('passport');
+var mongoose = require('mongoose');
+var keys = require('./conf/keys');
 
 // Load configs
 try {
@@ -21,17 +25,18 @@ try {
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
 app.set('views', './views')
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-// Connect to Mongo
-try {
-    app.use(mongo(configs.uri))
-    console.info('Connected to mongo')
-} catch (ex) {
-    console.error('Could not connect to mongo:')
-    console.error(ex)
-    process.exit()
-}
+// set up session cookies
+app.use(cookieSession({
+    maxAge: 60 * 60 * 1000, //1 hour
+    keys: [keys.session.cookieKey]
+}))
+
+// initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Load routes
 var sections = require('./routes/sections.js')
@@ -43,12 +48,24 @@ app.use('/', verify)
 var admin = require('./routes/admin.js')
 app.use('/admin', admin)
 
-// Base route
+var authRoutes = require('./routes/auth-routes');
+app.use('/auth', authRoutes);
+
+var profileRoutes = require('./routes/profile-routes');
+app.use('/profile', profileRoutes);
+
+// create home route
 app.get('/', (req, res) => {
-    res.redirect('/section/1dry')
+    res.render('home', { user: req.user });
 })
+
+// connect to mongodb
+mongoose.connect(keys.mongodb.dbURI,{ useMongoClient: true }, () => {
+    //console.log('connected to mongodb');
+});
+
 
 // Listen on port in the configs
 app.listen(configs.port, () => {
-    console.info('Listening on port ' + configs.port + '...')
-})
+    //console.info('Listening on port ' + configs.port + '...')
+});

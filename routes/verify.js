@@ -7,7 +7,7 @@ router.post('/verify', (req, res) => {
     if (!(
         'module' in req.body &&
         'name' in req.body &&
-        'author' in req.body &&
+        //'author' in req.body &&
         'milliseconds' in req.body &&
         'code' in req.body
     )) {
@@ -17,6 +17,8 @@ router.post('/verify', (req, res) => {
         res.send('Requires module, name, author, milliseconds, and code fields.')
         return
     }
+//add check for missing #
+
 
     // Check for trivials
     var trivials = checkForTrivials(req.body.code)
@@ -63,39 +65,33 @@ router.post('/verify', (req, res) => {
             ws.close()
 
             //Find the next lesson to send
-            var problems = req.db.collection('problems')
-            problems.find({
-                'module': req.body.module,
-                'name': req.body.name
-            })
-            .project({
-                'module': 1,
-                'success': 1,
-                'failure': 1
-            })
-            .next((err, result) => {
-                // Don't send a new problem if we want them to repeat it
-                if (lines.overall == 'failure' && !('failure' in result)) {
+//to be changed
+          Lesson.find({
+              module: req.body.module,
+              name: req.body.name
+          }).then(function(result){
+            // Don't send a new problem if we want them to repeat it
+            if (lines.overall == 'failure' && !('failure' in result)) {
+                res.json({
+                    'status': 'failure',
+                    'lines': lines.lines
+                })
+            }
+            else {
+                // Otherwise, find the new problem
+                Lesson.find({
+                    'module' : result.module,
+                    'name': result[lines.overall]
+                }).then(function(result){
                     res.json({
-                        'status': 'failure',
-                        'lines': lines.lines
+                        'status': lines.overall,
+                        'lines': lines.lines,
+                        'problem': result
                     })
-                } else {
-                    // Otherwise, find the new problem
-                    problems.find({
-                        'module' : result.module,
-                        'name': result[lines.overall]
-                    })
-                    .project(problemProjection)
-                    .next((err, result) => {
-                        res.json({
-                            'status': lines.overall,
-                            'lines': lines.lines,
-                            'problem': result
-                        })
-                    })
-                }
-            })
+                })
+            }
+          })
+
         }
     })
 })

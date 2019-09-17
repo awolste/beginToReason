@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>iRESOLVE</title>
+        <style>
+        .column {
+          float: left;
+          width: 50%;
+        }
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+            body{
+                font-family: "Courier New";
+                margin: 0;
+                background: #f0f7f4;
+            }
+            nav{
+                background: #172840;
+                padding: 20px 10px;
+            }
+            nav ul{
+                max-width: 100vh;
+                margin: 0 auto;
+                padding: 0;
+            }
+            nav li{
+                list-style-type: none;
+                display: inline-block;
+                margin: 0 10px 0 0;
+            }
+            nav a{
+                font-family: "Courier New";
+                color: #fff;
+                font-weight: bolder;
+                font-size: 12pt;
+                background: #F26E00;
+                text-decoration: none;
+                padding: 5px;
+                display: block;
+                border-radius: 12px;
+            }
+            main, header{
+                font-size: 16pt;
+                max-width: 960px;
+                margin: 30px auto;
+                padding: 0 10px;
+                color: #333;
+            }
+            .nav-btn{
+                color: #fff;
+                text-decoration: none;
+                font-size: 16px;
+                padding: 10px;
+                background: #f56600;
+                border-radius: 12px;
+                box-shadow: 0 9px #999;
+                cursor: pointer;
+            }
+            .nav-btn:hover {
+              background-color: #ad4800
+            }
+            .nav-btn:active {
+              background-color: #ad4800;
+              box-shadow: 0 5px #999;
+              transform: translateY(4px);
+            }
+            .box{
+              border:5px solid #f56600;
+              background: #172840;
+              color: #fff;
+              border-radius: 15px;
+              font-size: 45px;
+            }
+            .box2{
+              border:3px solid #172840;
+              background: #f56600;
+            }
+            .logo
+            {
+              float: left;
+              background-color: #172840;
+              padding: 20px;
+              color: white;
+              font-size: 20px;
+            }
+            .nsf
+            {
+              float: right;
+              background-color: #172840;
+              color: white;
+            }
+            .footer {
+               position: fixed;
+               left: 0;
+               bottom: 0;
+               width: 100%;
+               background-color: #383a3d;
+               color: white;
+               text-align: center;
+            }
+            p.serif {
+              font-family: "Arial Black", Times, serif;
+              color: #383a3d;
+              font-size: 45px;
+            }
+            p.sans {
+              font-family: "Arial Black", Times, serif;
+              color: white;
+              font-size: 18px;
+            }
+            #talkbubble {
+              width: 120px;
+              height: 80px;
+              background: red;
+              position: relative;
+              -moz-border-radius: 10px;
+              -webkit-border-radius: 10px;
+              border-radius: 10px;
+              float: right;
+            }
+            #talkbubble:before {
+              content: "";
+              position: absolute;
+              right: 100%;
+              top: 26px;
+              width: 0;
+              height: 0;
+              border-top: 13px solid transparent;
+              border-right: 26px solid red;
+              border-bottom: 13px solid transparent;
+            }
+            #lock {
+              font-size: 8px;
+              position: relative;
+              width: 18em;
+              height: 13em;
+              border-radius: 2em;
+              top: 10em;
+              box-sizing: border-box;
+              border: 3.5em solid red;
+              border-right-width: 7.5em;
+              border-left-width: 7.5em;
+              margin: 0 0 6rem 0;
+            }
+            #lock:before {
+              content: "";
+              box-sizing: border-box;
+              position: absolute;
+              border: 2.5em solid red;
+              width: 14em;
+              height: 12em;
+              left: 50%;
+              margin-left: -7em;
+              top: -12em;
+              border-top-left-radius: 7em;
+              border-top-right-radius: 7em;
+            }
+            #lock:after {
+              content: "";
+              box-sizing: border-box;
+              position: absolute;
+              border: 1em solid red;
+              width: 5em;
+              height: 8em;
+              border-radius: 2.5em;
+              left: 50%;
+              top: -1em;
+              margin-left: -2.5em;
+            }
+
+        </style>
+          <div class="logo"><a> iRESOLVE &#8482; </a></div>
+          <img class="nsf" src="https://www.nsf.gov/images/logos/NSF_4-Color_bitmap_Logo.png" alt="nsf" style="width:8vh;height:8vh;">
+        </style>
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li><a href="/" class="nav-btn">Homepage</a></li>
+                <% if (user) { %>
+                <li><a href="/section/1dry" class="nav-btn">Begin To Reason</a></li>
+                <li><a href="/profile" class="nav-btn">Profile</a></li>
+                <li><a href="/auth/logout" class="nav-btn">Log out</a></li>
+                <% } else { %>
+                <li><a href="/auth/login" class="nav-btn">Login</a></li>
+                <% } %>
+            </ul>
+        </nav>
+          <header>
+            <div class = "box" align = "center" >
+              <h1>iRESOLVE</h1>
+            </div>
+          </header>
+          <main>
+            <div align = "left">
+                <p class="serif">Coding made easier<br> with our interactive tutor</p>
+            </div>
+
+            <div class = "box2" align = "center">
+              <p class="sans">BeginToReason is a tool that utilizes the RESOLVE programming language to pinpoint difficulties
+                CS students have with learning how to rigorously trace the code they encounter</p>
+            </div>
+          </main>
+          <div class="footer">
+            <p>Copyright © 2019, RESOLVE Software Research Group (RSRG). All rights reserved.
+              The use and distribution terms for this software are covered by the <br>BSD 3-clause license
+              which can be found <a href="/profile/license" style="color:orange">License</a>.
+              By using this software in any fashion, you are agreeing to be bound by the terms of this license.</p>
+            <p>Last Updated 15 August, 2019 12:00:00 PM by Andrew Wolstenholme</p>
+          </div>
+    </body>
+</html>

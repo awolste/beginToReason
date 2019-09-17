@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>BeginToReason</title>
+    <title>beginToReason</title>
 
     <!-- jQuery/jQuery UI Inclusion -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -17,7 +17,7 @@
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/left.css" rel="stylesheet">
     <link href="/css/right.css" rel="stylesheet">
-
+    
     <!-- JavaScripts -->
     <script src="/js/injectLeft.js"></script>
     <script src="/js/injectRight.js"></script>
@@ -47,7 +47,97 @@
 	} );
 	</script>
 </head>
+  <style>
+      .column {
+        float: left;
+        width: 50%;
+      }
+
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      nav{
+          background: #172840;
+          padding: 20px 10px;
+      }
+      nav ul{
+          max-width: 100vh;
+          margin: 0 auto;
+          padding: 0;
+      }
+      nav li{
+          list-style-type: none;
+          display: inline-block;
+          margin: 0 10px 0 0;
+      }
+      nav a{
+          font-family: "Courier New";
+          color: #fff;
+          font-weight: bolder;
+          font-size: 12pt;
+          background: #F26E00;
+          text-decoration: none;
+          padding: 5px;
+          display: block;
+          border-radius: 12px;
+      }
+      main, header{
+          font-size: 16pt;
+          max-width: 960px;
+          margin: 30px auto;
+          padding: 0 10px;
+          color: #333;
+      }
+      .nav-btn{
+          color: #fff;
+          text-decoration: none;
+          font-size: 16px;
+          padding: 10px;
+          background: #f56600;
+          border-radius: 12px;
+          box-shadow: 0 9px #999;
+          cursor: pointer;
+      }
+      .nav-btn:hover {
+        background-color: #ad4800
+      }
+      .nav-btn:active {
+        background-color: #ad4800;
+        box-shadow: 0 5px #999;
+        transform: translateY(4px);
+      }
+      .logo
+      {
+        font-family: "Courier New";
+        float: left;
+        background-color: #172840;
+        padding: 20px;
+        color: white;
+        font-size: 20px;
+      }
+      .nsf
+      {
+        float: right;
+        background-color: #172840;
+        color: white;
+      }
+  </style>
 <body>
+</style>
+  <div class="logo"><a> iRESOLVE &#8482; </a></div>
+  <img class="nsf" src="https://www.nsf.gov/images/logos/NSF_4-Color_bitmap_Logo.png" alt="nsf" style="width:8vh;height:8vh;">
+</style>
+  <nav>
+    <ul>
+        <li><a href="/" class="nav-btn">Homepage</a></li>
+        <li><a href="/section/1dry" class="nav-btn">Begin To Reason</a></li>
+        <li><a href="/profile" class="nav-btn">Profile</a></li>
+        <li><a href="/auth/logout" class="nav-btn">Log out</a></li>
+    </ul>
+  </nav>
 
 <div id="left"></div>
 <div id="right"></div>

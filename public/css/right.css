@@ -1,19 +1,25 @@
-#right .header, #right .footer {
-    background: #7BA3C9;
-    border: 6px solid steelblue;
+#right .header {
+    background: #f56600;
+    border: 6px solid #383a3d;
+    font-size: 30pt;
+}
+#right .footer {
+  border: 6px solid #383a3d;
+  background: #f56600;
 }
 
 #right .headette, #right .footette, #right .footetteDisabled {
-    background: darkseagreen;
-    border-left: 6px solid steelblue;
-    border-right: 6px solid steelblue;
+    background: #BEBEBE;
+    border-left: 6px solid #383a3d;
+    border-right: 6px solid #383a3d;
+
 }
 
 #editor {
     width: 100%;
 
     box-sizing: border-box;
-    border: 6px solid steelblue;
+    border: 6px solid #383a3d;
 }
 
 #right table {
@@ -23,15 +29,14 @@
     font-family: "Courier New";
     color: ghostwhite;
     font-weight: bolder;
-    font-size: 16pt;
 }
 
 #right .footer table {
-    font-size: 12pt;
+    font-size: 20pt;
 }
 
 #right .footette:hover, #right .headette.button:hover {
-    background: #5FA473;
+    background: darkgrey;
     cursor: pointer;
 }
 
@@ -41,6 +46,53 @@
 
 #right .footetteDisabled table {
     color: #68B080;
+}
+#right .prev {
+    float: left;
+    background: #172840;
+    width: 20%;
+    height: 75%;
+    border-radius: 25px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin:5px;
+    box-shadow: 0 9px #999;
+    text-align:center;
+}
+#right .next {
+    float: left;
+    background: #172840;
+    width: 20%;
+    height: 75%;
+    border-radius: 25px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin:5px;
+    box-shadow: 0 9px #999;
+    text-align:center;
+}
+#right .mid {
+    float: right;
+    background: #172840;
+    width: 50%;
+    height: 75%;
+    border-radius: 25px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin:5px;
+    box-shadow: 0 9px #999;
+    text-align:center;
+}
+#right .prev:hover, #right .next:hover, #right .mid:hover {
+    background: #172840;
+    cursor: pointer;
+}
+
+#right .prev:active, #right .next:active, #right .mid:active {
+    background: #172840;
+    cursor: pointer;
+    transform: translateY(4px);
+    box-shadow: 0 5px #999;
 }
 
 /* VC Markers Colors */

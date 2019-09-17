@@ -4,6 +4,11 @@ var verifying = false;
 var time = new Date();
 
 function submit() {
+
+  console.log("submitting");
+
+//add a thing for simple mistakes makes a popup, does not verify
+//check where data is saved to be sent so we can save and send the answer
     /* Protect against multiple requests */
     if (verifying) {
         return;
@@ -13,9 +18,10 @@ function submit() {
     var data = {};
     data.module = currentLesson.module;
     data.name = currentLesson.name;
-    data.author = author;
+    //data.author = user.googleId;   //make userid
     data.milliseconds = getTime();
     data.code = createEditor.getValue();
+    //need to get the answer from the multiple choice
     $.postJSON("/verify", data, (results) => {
         if (results.lines !== undefined) {
             addLines(results.lines);
@@ -24,7 +30,7 @@ function submit() {
         if (results.status == "trivial") {
             unlock("Sorry, not the intended answer. Try again!");
         } else if (results.status == "unparsable") {
-            unlock("Sorry, can't parse your answer. Try again!");
+            unlock("Syntax error. Check each of the following: \r\n1. Did you fill out all confirm assertions?\r\n 2. Is there a semicolon at the end of each assertion? \r\n3. Did you use the correct variable names?");
         } else if (results.status == "failure") {
             if ("problem" in results) {
                 unlock("Sorry, not correct. Try this other lesson!");
