@@ -7,7 +7,7 @@ function submit() {
 
 //customize this prompt in the style.css possibly
   var bool = 0;
-  var explaination = prompt("Please explain your reasoning: ", "");
+  var explaination = prompt("Please explain your reasoning for your answer: ", "");
   while(bool == 0){
     if (explaination == null || explaination == "") {
       bool = 0;
