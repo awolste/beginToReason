@@ -83,15 +83,17 @@ router.post('/verify', (req, res) => {
             }
             else {
                 // Otherwise, find the new problem
+                //console.log(result[0]._doc);
                 Lesson.find({
-                    'module' : result.module,
-                    'name': result[lines.overall]
+                    'module' : result[0]._doc.module,
+                    'name': result[0]._doc.success
                 }).then(function(result){
-                    res.json({
-                        'status': lines.overall,
-                        'lines': lines.lines,
-                        'problem': result
-                    })
+                  //console.log(result[0]._doc);
+                  res.json({
+                            'status': lines.overall,
+                            'lines': lines.lines,
+                            'problem': result[0]._doc
+                        })
                 })
             }
           })

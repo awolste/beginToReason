@@ -41,7 +41,7 @@ function submit() {
         }
 
         if (results.status == "trivial") {
-            unlock("Sorry, not the intended answer. Try again!");
+            unlock("Trivial answer. Try again!");
         } else if (results.status == "unparsable") {
             unlock("<b>Syntax error.</b> <br>Check each of the following: <br>1. Did you fill out all confirm assertions? <br>2. Is there a semicolon at the end of each assertion? <br>3. Did you use the correct variable names?");
         } else if (results.status == "failure") {
@@ -49,10 +49,11 @@ function submit() {
                 unlock("Sorry, not correct. Try this other lesson!");
                 parseLesson(results.problem);
             } else {
-                unlock("<b>Wrong answer.</b> <br>Check each of the following: <br>1. Did you read the reference material? <br>2. Do you understand the distinction between input and output values?");
+                unlock("<b>Wrong answer.</b> <br>Check each of the following: <br>1. Did you read the reference material? <br>2. Do you understand the distinction between #J and J?");
             }
         } else if (results.status == "success") {
             unlock("Correct! On to the next lesson.");
+            //console.log(results.problem);
             parseLesson(results.problem);
         } else {
             unlock("Something went wrong.");

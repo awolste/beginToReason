@@ -53,6 +53,7 @@ function initial(req, res, module, problem) {
         module: module,
         name: problem
     }).then(function(result){
+        //console.log(result[0]._doc);
         res.json(result[0]._doc)
     })
 }

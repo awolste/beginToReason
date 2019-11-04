@@ -41,6 +41,7 @@ function parseLesson(data) {
         $("#right .headette td").html("").off("click");
     }
 
+    //console.log(data.code)
     createEditor.setValue(data.code);
     createEditor.selection.moveCursorToPosition({
         row: 0,
@@ -66,7 +67,7 @@ function endSurvey() {
 
 
 function getReason() {
-    
+
     //have a submit and load verify
     //from here when you press okay call submit();
     var retVal = prompt("Enter your name : ", "your name here");
